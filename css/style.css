@@ -5,6 +5,14 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+    color: inherit
+}
+li {
+    list-style: none;
+}
+
 :root {
     --c-font: 'Caveat', cursive;
     --o-font: 'Oswald', sans-serif;
@@ -13,6 +21,47 @@
 }
 .o-font {
     font-family: var(--o-font);
+}
+
+header {
+    width: 100%;
+    /* border: 1px solid red; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 998;
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+header h1 {
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 1;
+    letter-spacing: -4px;
+    color: #fefefe;
+}
+header span {
+    position: relative;
+    font-weight: 300;
+    font-family: var(--u-font);
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: -4px;
+    color: #fefefe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header span::after {
+    content: '';
+    width: 48%;
+    height: 5px;
+    background: #fefefe;
+    position: absolute;
+    bottom: -36px;
 }
 
 #wrap {
@@ -79,7 +128,7 @@
     font-weight: 300;
     letter-spacing: -4px;
     font-family: var(--u-font);
-    padding: 25px;
+    padding: 0 0 25px 0;
     border-bottom: 1px solid #979a97;
     margin-bottom: 33px;
 }
@@ -158,14 +207,14 @@
 
 .left-view {
     left: -100%;
-    background: #444;
+    background: url(../img/left-bg01.png) no-repeat center center / cover;
     width: 100%;
     height: 100%;
     position: absolute;
 }
 .right-view {
     right: -100%;
-    background: #fff;
+    background: url(../img/right-bg01.png) no-repeat center center / cover;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -246,7 +295,7 @@
     letter-spacing: 16px;
     color: #fff;
     opacity: .34;
-    margin-bottom: 36px;
+    margin-bottom: 18px;
     transition: all .4s;
 }
 #wrap .container .txt-area:hover .txt-box .title {
@@ -262,11 +311,30 @@
     font-size: 28px;
     letter-spacing: 10px;
     color: #fff;
+    margin-bottom: 30px;
 }
 #wrap .container .right .txt-box .desc {
     color: #000;
 }
-
+#wrap .container .txt-box .view-btn {
+    width: 100%;
+    background: #fefefe;
+    color: #000;
+    font-family: var(--o-font);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1;
+    letter-spacing: 16px;
+    border-radius: 300px;
+    padding: 18px 0;
+    text-align: center;
+    visibility: hidden;
+}
+#wrap.left-active .container .txt-box .view-btn,
+#wrap.right-active .container .txt-box .view-btn {
+    visibility: visible;
+    transition-delay: .4s;
+}
 
 #wrap .container .right {
     right: 0;
@@ -290,5 +358,69 @@
     100% {
         opacity: 1;
         visibility: visible;
+    }
+}
+
+/* responsive css */
+@media ( max-width: 450px ){
+    .load .logo-area .logo span.en-title {
+        width: 100%;
+        font-size: 48px;
+        padding: 0 0 10px 0;
+        margin-bottom: 10px;
+    }
+    .load .logo-area .logo span.kr-title {
+        font-size: 18px;
+        letter-spacing: 4px;
+    }
+    header h1 {
+        font-size: 48px;
+    }
+    header span {
+        font-size: 28px;
+        letter-spacing: -1px;
+    }
+    header span::after {
+        height: 3px;
+        bottom: -18px;
+    }
+    #wrap .bg-area img {
+        width: auto;
+        height: 100%;
+    }
+    #wrap .container .left,
+    #wrap .container .right {
+        width: 50%;
+    }
+    #wrap .container .txt-box .title {
+        font-size: 46px;
+        letter-spacing: 4px;
+        margin-bottom: 12px;
+    }
+    #wrap .container .txt-box .desc {
+        font-size: 14px;
+        letter-spacing: -.8px;
+        margin-bottom: 20px;
+    }
+    #wrap .container .txt-box .view-btn {
+        letter-spacing: 1px;
+        font-size: 14px;
+        padding: 8px 0;
+    }
+    #wrap .container .txt-area .pagination-box {
+        width: 14px;
+
+    }
+    #wrap .container .left .txt-area .pagination-box {
+        left: 14px;
+    }
+    #wrap .container .right .txt-area .pagination-box {
+        right: 14px;
+    }
+    #wrap.right-active .container .right .txt-area .pagination-box {
+        left: 30px;
+    }
+    #wrap.left-active .container .left .txt-area .pagination-box {
+        right: 30px;
     }
 }
